@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ UI Datepicker</title>
+    <link rel="stylesheet" href="jqui.css">
+    <script
+        src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Date Picker Demo</h1>
+    <label for="date1">Date picker 1</label>
+    <input type="text" name="date1" id="date1">
+    <label for="date2">Date picker 2</label>
+    <input type="text" name="date2" id="date2">
+    <div id="liveRegion" role="log" aria-live="assertive" aria-atomic="true" aria-relevant="additions">
+    </div>
+    <script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+    <script>
+        (function(window, document, $) {
+            $("#date1").datepicker();
+            $("#date2").datepicker();
+
+            // const createAriaEl = function() {
+            //     const el = document.createElement("div");
+            //     el.setAttribute("role", "log");
+            //     el.setAttribute("aria-live", "assertive");
+            //     el.setAttribute("aria-atomic", "true");
+            //     el.setAttribute("aria-relevant", "additions");
+            //     return el;
+            // }
+            // const newEl = createAriaEl();
+            // const currentEl = document.getElementById("date1");
+            // document.body.insertBefore(newEl, currentEl);
+            // let day = "";
+            // let month = "";
+            // let year = "";
+
+            const message = ' ' + $('.ui-state-hover').html() + 
+                ' ' + $('.ui-datepicker-month').html() + 
+                ' ' + $('.ui-datepicker-year').html();
+            $("#liveRegion").text(message);
+
+            const updateLiveRegion = function(ev) {
+                console.log('event fired: ', ev);
+                const message = ' ' + $('.ui-state-hover').html() + 
+                ' ' + $('.ui-datepicker-month').html() + 
+                ' ' + $('.ui-datepicker-year').html();
+                $("#liveRegion").text(message);
+                console.log('live region updated: ', message);
+            }
+            $(".ui-datepicker-calendar").on("focusin", updateLiveRegion);
+        })(window, document, jQuery);
+    
+    </script>
+</body>
+</html>
